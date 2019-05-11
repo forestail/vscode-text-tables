@@ -127,7 +127,8 @@ export class TableNavigator {
         return nextRowJump.range.start.translate(0, 1);
     }
 
-    private jump(currentPosition: vscode.Position, accessor: (x: JumpPosition) => JumpPosition): vscode.Position | undefined {
+    private jump(currentPosition: vscode.Position,
+        accessor: (x: JumpPosition) => JumpPosition): vscode.Position | undefined {
         let jmp = this.jumpPositions.find(x => x.range.contains(currentPosition));
         if (jmp) {
             jmp = accessor(jmp);

@@ -4,7 +4,8 @@ import { Table, RowType, Stringifier, TableNavigator, Parser } from './ttTable';
 /**
  * Create new table with specified rows and columns count in position of cursor
  */
-export async function createTable(rowsCount: number, colsCount: number, editor: vscode.TextEditor, stringifier: Stringifier) {
+export async function createTable(rowsCount: number, colsCount: number, editor: vscode.TextEditor,
+    stringifier: Stringifier) {
     const table = new Table();
     for (let i = 0; i < rowsCount + 1; i++) {
         table.addRow(RowType.Data, new Array(colsCount).fill(''));
@@ -71,7 +72,8 @@ export async function gotoPreviousCell(editor: vscode.TextEditor, _range: vscode
 /**
  * Format table under cursor
  */
-export async function formatUnderCursor(editor: vscode.TextEditor, range: vscode.Range, table: Table, stringifier: Stringifier) {
+export async function formatUnderCursor(editor: vscode.TextEditor, range: vscode.Range,
+    table: Table, stringifier: Stringifier) {
     const newText = stringifier.stringify(table);
     const prevSel = editor.selection.start;
 
@@ -82,7 +84,8 @@ export async function formatUnderCursor(editor: vscode.TextEditor, range: vscode
 /**
  * Swap column under cursor with column on the right
  */
-export async function moveColRight(editor: vscode.TextEditor, range: vscode.Range, table: Table, stringifier: Stringifier) {
+export async function moveColRight(editor: vscode.TextEditor, range: vscode.Range, table: Table,
+    stringifier: Stringifier) {
     const rowCol = rowColFromPosition(table, editor.selection.start);
     if (rowCol.col < 0) {
         vscode.window.showWarningMessage('Not in table data field');
@@ -111,7 +114,8 @@ export async function moveColRight(editor: vscode.TextEditor, range: vscode.Rang
 /**
  * Swap column under cursor with column on the left
  */
-export async function moveColLeft(editor: vscode.TextEditor, range: vscode.Range, table: Table, stringifier: Stringifier) {
+export async function moveColLeft(editor: vscode.TextEditor, range: vscode.Range, table: Table,
+    stringifier: Stringifier) {
     const rowCol = rowColFromPosition(table, editor.selection.start);
     if (rowCol.col < 0) {
         vscode.window.showWarningMessage('Not in table data field');
